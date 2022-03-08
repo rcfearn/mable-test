@@ -1,0 +1,28 @@
+<div *ngIf="isRoot"
+     class="button-container">
+  <button mat-stroked-button
+          type="button"
+          (click)="addNode('folder')">Add folder to root</button>
+</div>
+
+<ul>
+  <li *ngFor="let n of nodes;"
+      class="{{n.type}} directory-item">
+
+    <app-node [node]="n"
+              (onChange)="treeChanged()"
+              (onDelete)="nodeDeleted($event)"
+              (addNode)="addNode('unset',$event)"></app-node>
+
+
+    <app-directory-tree *ngIf="n.children.length > 0"
+                        [isRoot]="false"
+                        [nodes]="n.children"
+                        [idPrefix]="n.id"
+                        (onChange)="treeChanged()"></app-directory-tree>
+
+  </li>
+</ul>
+
+
+

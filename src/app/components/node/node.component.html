@@ -1,0 +1,28 @@
+<span class="node">
+  <span class="icon {{node.type || ''}}"></span>
+
+  <ng-container *ngIf="!editMode">
+    <span>
+      {{node.name}}
+    </span>
+
+    <span class="edit-container">
+      <button mat-icon-button type="button" (click)="add()" *ngIf="node.type === 'folder'"><mat-icon>add</mat-icon></button>
+      <button mat-icon-button type="button" (click)="remove()"><mat-icon>delete</mat-icon></button>
+    </span>
+  </ng-container>
+
+  <ng-container *ngIf="editMode">
+    <span *ngIf="node.type !== 'unset'">
+      <form [formGroup]="formGroup" (ngSubmit)="submit()">
+        <input type="text" formControlName="name" placeholder="Name" />
+        <button mat-icon-button type="submit"><mat-icon>check</mat-icon></button>
+        <button mat-icon-button type="button" (click)="remove()"><mat-icon>close</mat-icon></button>
+      </form>
+    </span>
+    <ng-container *ngIf="node.type === 'unset'">
+      <button type="button" (click)="setNode('folder')">Folder</button>
+      <button type="button" (click)="setNode('file')">File</button>
+    </ng-container>
+  </ng-container>
+</span>

@@ -1,0 +1,16 @@
+<div class="content">
+  <h1>
+    Mable Test - Rob Fearn
+  </h1>
+
+  <app-directory-tree [nodes]="nodeArray"
+                      (onChange)="treeChanged()"></app-directory-tree>
+
+
+  <div id="json-container">
+    <h3>JSON Output</h3>
+    <p>
+      {{json}}
+    </p>
+  </div>
+</div>
